@@ -1,0 +1,31 @@
+<!-- templates/image.html -->
+
+{% extends "base.html" %}
+
+{% block title %}
+    - Your Image
+{% endblock title %}
+
+{% block content %}
+<form>
+    {% if image_b64 %}
+    <div class="code-picture">
+        <img
+            src="data:image/png;base64,{{ image_b64 | safe }}"
+            alt="Code Image"
+        />
+    </div>
+    <a
+        href="data:image/png;base64,{{ image_b64 | safe }}"
+        download="your_code.png"
+    >
+        Download your code image ⬇️
+    </a>
+    {% endif %}
+    <div class="controls">
+        <button formmethod="get" formaction="{{ url_for('code') }}">
+            🔂 Restart
+        </button>
+    </div>
+</form>
+{% endblock content %}
